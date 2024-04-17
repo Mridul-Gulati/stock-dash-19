@@ -70,7 +70,7 @@ while True:
     if time.time() - st.session_state.last_analysis_time >= 100:
         st.session_state.last_analysis_time = time.time()
 
-        st.session_state.res['CMP'] = round(get_cmp_price(secrets["connections"]["gsheets"]["worksheets"]['MMFIN']),2)
+        st.session_state.res['CMP'] = round(get_cmp_price("M&MFIN"),2)
         st.session_state.res['Current Value'] = st.session_state.res['Qty.'] * st.session_state.res['CMP']
         st.session_state.res['Gain%'] = round(((res['Current Value'] - st.session_state.res['Buy Value']) / st.session_state.res['Buy Value']) * 100,2)
         st.session_state.res['Amount'] = st.session_state.res['Current Value'] - st.session_state.res['Buy Value']
