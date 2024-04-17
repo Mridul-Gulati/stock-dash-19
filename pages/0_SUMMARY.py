@@ -140,7 +140,7 @@ while True:
                 Stock_rows.iloc[1:, 3] = ''  # Set Stock name to empty string for all rows except the first
                 sell = pd.concat([sell, Stock_rows], ignore_index=True)
             st.session_state.all_data[stock]['Qty.'] = st.session_state.all_data[stock]['Qty.'].str.replace(',', '').astype(float) if st.session_state.all_data[stock]['Qty.'].dtype == 'object' else st.session_state.all_data[stock]['Qty.']
-            cmp = get_cmp_price(st.session_state.secrets["connections"]["gsheets"]["worksheets"][stock])
+            cmp = round(get_cmp_price(st.session_state.secrets["connections"]["gsheets"]["worksheets"][stock]),2) if stock != "M&MFIN" else round(get_cmp_price("M&MFIN"),2)
             total_value =  ((st.session_state.all_data[stock]['Qty.']) * (st.session_state.all_data[stock]['Price']).astype(float)).sum() if not st.session_state.all_data[stock].empty else 0
             total_invested += total_value
             current_value =  ((st.session_state.all_data[stock]['Qty.']) * cmp).sum() if not st.session_state.all_data[stock].empty else 0
