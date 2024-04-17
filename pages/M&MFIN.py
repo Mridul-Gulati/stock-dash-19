@@ -10,7 +10,7 @@ title = st.empty()
 df_place = st.empty()
 res_place = st.empty()
 st.session_state.last_analysis_time = time.time() - 110
-res = st.session_state.all_data["M&MFIN"]
+res = st.session_state.all_data["MMFIN"]
 secrets = st.session_state.secrets
 if 'res' not in st.session_state:
     st.session_state.res = res
@@ -70,7 +70,7 @@ while True:
     if time.time() - st.session_state.last_analysis_time >= 100:
         st.session_state.last_analysis_time = time.time()
 
-        st.session_state.res['CMP'] = round(get_cmp_price(secrets["connections"]["gsheets"]["worksheets"]['M&MFIN']),2)
+        st.session_state.res['CMP'] = round(get_cmp_price(secrets["connections"]["gsheets"]["worksheets"]['MMFIN']),2)
         st.session_state.res['Current Value'] = st.session_state.res['Qty.'] * st.session_state.res['CMP']
         st.session_state.res['Gain%'] = round(((res['Current Value'] - st.session_state.res['Buy Value']) / st.session_state.res['Buy Value']) * 100,2)
         st.session_state.res['Amount'] = st.session_state.res['Current Value'] - st.session_state.res['Buy Value']
