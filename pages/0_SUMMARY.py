@@ -121,7 +121,8 @@ while True:
     buy = pd.DataFrame(columns=['Stock','Down%', 'Down_LB%',"LTH", 'Down_LTH%','CMP', 'LB','Amount', 'Qty'])
     if time.time() - st.session_state.last_analysis_time >= 0:
         st.session_state.last_analysis_time = time.time()
-        stocks = list(st.session_state.all_data.keys())
+        # stocks = list(st.session_state.all_data.keys())
+        stocks = secrets["connections"]["gsheets"]["worksheets"].values()
         today = datetime.datetime.today().date()
         for stock in stocks:
             time.sleep(1)
